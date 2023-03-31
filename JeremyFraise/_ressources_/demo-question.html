@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo - intégrer une question</title>
+</head>
+
+<body>
+    <!-- Première question portant l'identifiant Q1 -->
+    <fieldset id="Q1">
+        <legend>
+            <h3>
+                Quel peintre est connu entre autres pour l’œuvre <cite>Composition II en rouge, bleu et
+                    jaune ?</cite></h3>
+        </legend>
+        <ul class="choixReponses">
+            <!-- Les choix de réponses sont A B ou C -->
+            <!-- Observer la nomenclature des identifiants: Q1A, Q1B, Q1C
+                 une concaténation entre le id de la question et ce choid de réponse -->
+            <li>
+                <input id="Q1A" type="radio" name="Q1" value="A" required class="visuallyhidden">
+                <label for="Q1A">
+                    <img src="https://via.placeholder.com/80x60/cccccc/9e0b0b" alt="">
+                    Piet Mondrian
+                </label>
+            </li>
+            <li>
+                <input id="Q1B" type="radio" name="Q1" value="B" class="visuallyhidden">
+                <label for="Q1B"><img src="https://via.placeholder.com/80x60/cccccc/9e0b0b" alt="">
+                    Bart van der Leck</label>
+            </li>
+            <li>
+                <input id="Q1C" type="radio" name="Q1" value="C" class="visuallyhidden">
+                <label for="Q1C"><img src="https://via.placeholder.com/80x60/cccccc/9e0b0b" alt="">
+                    Theo van Doesburg</label>
+            </li>
+        </ul>
+        <p class="erreur"> </p>
+    </fieldset>
+</body>
+
+</html>

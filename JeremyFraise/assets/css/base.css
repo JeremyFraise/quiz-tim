@@ -1,0 +1,32 @@
+/*** Styles de base ***/
+body {
+    margin: 0;
+}
+
+/* Images fluides */
+img {
+    max-width: 100%;
+}
+
+/* Bandeau supérieur de retour au portail */
+[role=banner] {
+    background-color: var(--couleur-bandeau-superieur);
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.logoQuizTIM {
+    height: 35px;
+    padding: .5em;
+}
+
+.logoQuizTIM__typo {
+    fill: var(--couleur-svg-bandeau-superieur);
+}
+
+.logoQuizTIM:hover .logoQuizTIM__typo,
+.logoQuizTIM:focus .logoQuizTIM__typo {
+    fill: var(--couleur-svg-bandeau-superieur-hover);
+}
