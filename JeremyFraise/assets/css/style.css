@@ -11,3 +11,24 @@
 @import url(base.css);
 
 /* AJOUTER UNE TABLE DES MATIÈRES POUR POUVOIR NAVIGUER LA CSS*/
+
+
+/* Grille de mise en page */
+.depart, 
+.question1, 
+.question2, 
+.question3, 
+.resultat{
+
+    display: grid;
+    gap: 1em 1em;
+
+}
+
+.depart{
+
+    grid-template-areas:
+        "header
+        "";
+
+}

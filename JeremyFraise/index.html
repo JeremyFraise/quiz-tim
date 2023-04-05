@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Titre du quiz - Quiz TIM</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <script defer src="assets/js/app.js"></script>
 </head>
 
 <body>
@@ -28,6 +29,253 @@
             </svg>
         </a>
     </header>
+
+    <main role="main">
+
+        <article class="depart">
+            <div>
+                <h1 class="titre">
+                    <img src="" alt>
+                    <p class="screen-reader">L'animation: l'art de l'animation</p>
+                </h1>
+                
+                <p>Testez vos connaissances sur l’animation et ces principes fondamentaux.</p>
+
+                <button id="btnCommencer">Démarrer le quiz</button>
+            </div>
+        </article>
+
+        <article class="question1 visuallyhidden">
+            <div>
+                <h2 class="titreQuestion">Question 1/3</h2>
+                <p>Lequel des choix suivants ne fait pas parti des 12 principes de l’animation décrit par Ollie 
+                    Johnston et Frank Thomas dans le livre The Illusion of Life?
+                </p>
+            </div>
+
+            <section>
+
+                <picture>
+                    <source srcset="assets/images/720/banniereQuestion1.jpg" media="(max-width:600px)">
+                    <source srcset="assets/images/1668/banniereQuestion1.jpg" media="(max-width:1200px)">
+                    <img src="assets/images/2000/banniereQuestion1.jpg" alt="The Illusion of Life écrit par Frank Thomas et Ollie Johnston">
+                </picture>
+
+                <form>
+
+                    <!--Question 1-->
+                    <input id="Q1A" type="radio" name="Q1">
+                    <label for="Q1A">
+                        <p>Anticipation</p>
+                        <div class="visuallyhidden">
+                            <img src="assets/images/834/question1_image1.jpg" alt>
+                            <p></p>
+                        </div>
+                    </label>
+                    
+                    <input id="Q1B" type="radio" name="Q1">
+                    <label for="Q1B">
+                        <p>Amorti en début et fin de mouvement</p>
+                        <div class="visuallyhidden">
+                            <img src="assets/images/834/question1_image2.jpg" alt>
+                            <p></p>
+                        </div>
+                    </label>
+                    
+                    <input id="Q1C" type="radio" name="Q1">
+                    <label for="Q1C">
+                        <p>Réalisme</p>
+                        <div class="visuallyhidden">
+                            <img src="assets/images/834/question1_image3.jpg" alt>
+                            <p></p>
+                        </div>
+                    </label>
+                    
+                    <input id="Q1D" type="radio" name="Q1">
+                    <label for="Q1D">
+                        <p>Arc</p>
+                        <div class="visuallyhidden">
+                            <img src="assets/images/834/question1_image4.jpg" alt>
+                            <p></p>
+                        </div>
+                    </label>
+
+                </form>
+
+            </section>
+
+            <div class="messageBonneReponse visuallyhidden">
+                <h3>Bonne réponse</h3> <!--Message bonne réponse-->
+                <p></p>
+            </div>
+            
+            <div class="messageMauvaiseReponse visuallyhidden">
+                <h3>Mauvaise réponse</h3> <!--Message mauvaise réponse-->
+                <p></p>
+            </div>
+
+            <button id="btnValider">Valider la réponse</button>
+            
+            
+        </article>
+        <article class="question2 visuallyhidden">
+
+            <div>
+                <h2 class="titreQuestion">Question 2/3</h2>
+                <p>Quelle principe d'animation est illustré dans le clip suivant?</p>
+            </div>
+
+            <section>
+
+                <!--Vidéo pour la présentation-->
+                <video>
+                    <source>
+                    <source>
+                </video>
+
+                <form>
+
+                    <!--Question 2-->
+                    <input id="Q2A" type="radio" name="Q2">
+                    <label for="Q2A">
+                        <p>Amorti en début et fin de mouvement</p>
+                        <div class="visuallyhidden">
+                            <img src="assets/images/834/question2_image1.jpg" alt>
+                            <p></p>
+                        </div>
+                    </label>
+                    
+                    <input id="Q2B" type="radio" name="Q2">
+                    <label for="Q2B">
+                        <p>Exagération</p>
+                        <div class="visuallyhidden">
+                            <img src="assets/images/834/question2_image2.jpg" alt>
+                            <p></p>
+                        </div>
+                    </label>
+                    
+                    <input id="Q2C" type="radio" name="Q2">
+                    <label for="Q2C">
+                        <p>Cohérence physique/théâtrale</p>
+                        <div class="visuallyhidden">
+                            <img src="assets/images/834/question2_image3.jpg" alt>
+                            <p></p>
+                        </div>
+                    </label>
+                    
+                    <input id="Q2D" type="radio" name="Q2">
+                    <label for="Q2D">
+                        <p>Compression et étirement</p>
+                        <div class="visuallyhidden">
+                            <img src="assets/images/834/question2_image4.jpg" alt>
+                            <p></p>
+                        </div>
+                    </label>
+
+                </form>
+
+            </section>
+
+            <div class="messageBonneReponse visuallyhidden">
+                <h3></h3> <!--Message bonne réponse-->
+                <p></p>
+            </div>
+            
+            <div class="messageMauvaiseReponse visuallyhidden">
+                <h3></h3> <!--Message mauvaise réponse-->
+                <p></p>
+            </div>
+
+            <button>Valider la réponse</button>
+
+        </article>
+        <article class="question3 visuallyhidden">
+
+            <div>
+                <h2 class="titreQuestion">Question 3/3</h2>
+                <p>Quelle principe d'animation est illustré dans le clip suivant?</p>
+            </div>
+
+            <section>
+
+                <!--Vidéo pour la présentation-->
+                <video>
+                    <source>
+                    <source>
+                </video>
+
+                <form>
+                    <!--Question 3-->
+                    <input id="Q3A" type="radio" name="Q3">
+                    <label for="Q3A">
+                        <p>Anticipation</p>
+                        <div class="visuallyhidden">
+                            <img src="assets/images/834/question3_image1.jpg" alt>
+                            <p></p>
+                        </div>
+                    </label>
+                    
+                    <input id="Q3B" type="radio" name="Q3">
+                    <label for="Q3B">
+                        <p>Cohérence</p>
+                        <div class="visuallyhidden">
+                            <img src="assets/images/834/question3_image2.jpg" alt>
+                            <p></p>
+                        </div>
+                    </label>
+                    
+                    <input id="Q3C" type="radio" name="Q3">
+                    <label for="Q3C">
+                        <p>Exagération</p>
+                        <div class="visuallyhidden">
+                            <img src="assets/images/834/question3_image3.jpg" alt>
+                            <p></p>
+                        </div>
+                    </label>
+                    
+                    <input id="Q3D" type="radio" name="Q3">
+                    <label for="Q3D">
+                        <p>Arc</p>
+                        <div class="visuallyhidden">
+                            <img src="assets/images/834/question3_image4.jpg" alt>
+                            <p></p>
+                        </div>
+                    </label>
+                </form>
+
+                <picture>
+                    <source>
+                    <source>
+                    <img src="assets/images/question1_image1.jpg" alt="">
+                </picture>
+
+            </section>
+
+            <div class="messageBonneReponse visuallyhidden">
+                <h3></h3> <!--Message bonne réponse-->
+                <p></p>
+            </div>
+            
+            <div class="messageMauvaiseReponse visuallyhidden">
+                <h3></h3> <!--Message mauvaise réponse-->
+                <p></p>
+            </div>
+            
+
+            <button>Valider la réponse</button>
+
+        </article>
+        <article class="resultat visuallyhidden">
+
+        </article>
+
+    </main>
+
+    <footer role="">
+
+
+
+    </footer>
 </body>
 
 </html>

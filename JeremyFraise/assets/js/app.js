@@ -1,6 +1,6 @@
 /**
  * TIM - QUIZ
- * @author: Prénom Nom;
+ * @author: Jeremy Fraser;
  **/
 
 /* Données du quiz - À ADAPTER SELON LES CONTENUS DU QUIZ */
@@ -32,7 +32,41 @@ const objJSON = {
 
 /* Objet Quiz */
 const quiz = {
-    debuterQuiz: function () { },
-    validerReponse: function (idReponse) { },
-    afficherResultats: function () { }
-}
+
+    intCompteur: null,
+    refDepart: document.querySelector('.depart'),
+    refQuestion1: document.querySelector('.question1'),
+    refQuestion2: document.querySelector('.question2'),
+    refQuestion3: document.querySelector('.question3'),
+
+    debuterQuiz: function () {
+
+        this.intCompteur = 0;
+
+        this.refDepart.classList.add('visuallyhidden');
+        this.refQuestion1.classList.remove('visuallyhidden');
+
+        
+    },
+
+    visionneuse: function () {
+
+    },
+    
+    validerReponse: function (idReponse) {
+
+
+
+    },
+    afficherResultats: function () {
+
+    }
+    
+};
+
+document.getElementById('btnCommencer').addEventListener('click', function() {
+     quiz.debuterQuiz();
+});
+document.getElementById('btnValider').addEventListener('click', function() {
+    quiz.validerReponse(e.currentTarget.id);
+});
