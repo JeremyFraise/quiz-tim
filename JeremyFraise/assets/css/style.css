@@ -12,23 +12,211 @@
 
 /* AJOUTER UNE TABLE DES MATIÈRES POUR POUVOIR NAVIGUER LA CSS*/
 
+body{
 
-/* Grille de mise en page */
+    background-image: url(../images/background-image_1920w.jpg);
+    
+}
+
+.main {
+    margin: 2em;
+}
+/* ---- Grille de mise en page ---- */
 .depart, 
-.question1, 
-.question2, 
-.question3, 
+.question, 
+.choix,
 .resultat{
 
     display: grid;
     gap: 1em 1em;
+    padding: 10px;
 
 }
 
+/* Départ */
 .depart{
 
     grid-template-areas:
-        "header
-        "";
+        "entete"
+        "contenu"
+        "gif"
+        "bouton";
+
+}
+@media only screen and (min-width: 799px) {
+    .depart {
+        grid-template-columns: auto 20%;
+        grid-template-areas:
+            "entete gif gif"
+            "contenu gif gif"
+            "bouton . .";
+            
+    }
+}
+@media only screen and (min-width: 1000px) {
+    .depart {
+        grid-template-columns: 2fr 1fr 2fr;
+        grid-template-areas:
+            "entete entete gif"
+            "contenu contenu gif"
+            "bouton . .";
+            
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0;
+    }
+    
+}
+.titre {
+    grid-area: entete;
+    max-width: 450px; 
+}
+.contenuDepart {
+    grid-area: contenu;
+}
+.gif {
+    grid-area: gif;
+}
+.bouton {
+    grid-area: bouton;
+}
+
+/* Questions */
+.question{
+
+    grid-template-areas: 
+    "question"
+    "image"
+    "choix"
+    "message"
+    "bouton";
+
+}
+@media only screen and (min-width: 799px) {
+    .question {
+        /* grid-template-columns: auto 20%; */
+        grid-template-areas:
+            "question question"
+            "image  image"
+            "choix choix"
+            "message message"
+            "bouton bouton";
+            
+    }
+}
+@media only screen and (min-width: 1000px) {
+    .question {
+        grid-template-columns: auto 20% 20% auto;
+        grid-template-areas:
+            "question question question question"
+            "image image image image"
+            "choix choix choix choix"
+            "message message message message"
+            ". bouton bouton .";
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0;
+    }
+    
+}
+.enonceQuestion {
+    grid-area: question;
+}
+.image {
+    grid-area: image;
+}
+.choix {
+    grid-area: choix;
+}
+.messageBonneReponse {
+    grid-area: message;
+}
+.messageMauvaiseReponse {
+    grid-area: message;
+}
+
+/* Choix question */
+.choix{
+    grid-template-areas:
+        "a"
+        "b"
+        "c"
+        "d";
+    
+
+}
+@media only screen and (min-width: 799px) {
+    .choix {
+        grid-template-columns: 1fr 0.9fr;
+        grid-template-areas:
+            "a b"
+            "c d";
+    }
+}
+@media only screen and (min-width: 1000px) {
+    .choix {
+        grid-template-columns: 5% 45% 45% 5%;
+        grid-template-areas:
+            "a . . b"
+
+            "c . . d";
+    }
+}
+
+#Q1A {
+    grid-area: a;
+}
+#Q1B {
+    grid-area: b;
+}
+#Q1C {
+    grid-area: c;
+}
+#Q1D {
+    grid-area: d;
+}
+
+/* ---- CSS normal ---- */
+
+.cache {
+    display: none;
+}
+
+.choixQuestion {
+
+    appearance: none;
+
+}
+.texteQuestion {
+
+    padding: 2em;
+    /* border: 1px solid #333; */
+    background-image: url(../images/svg/boutonReponse.svg);
+    background-repeat: no-repeat;
+    background-size:contain;
+
+}
+.texteQuestion:hover {
+
+    background-image: url(../images/svg/boutonReponse__hover.svg);
+    background-repeat: no-repeat;
+    background-size:contain;
+
+
+}
+
+/* Footer */
+footer {
+
+    margin: 10em 0 0 0;
+    padding: 5em;
+    background-color: #01232E;
+
+}
+footer p{
+
+    text-align: center;
+    padding: 1em 0 1em 0;
+    color: #FFF;
 
 }
