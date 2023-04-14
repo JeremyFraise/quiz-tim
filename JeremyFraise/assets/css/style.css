@@ -77,8 +77,13 @@ body{
 .gif {
     grid-area: gif;
 }
-.bouton {
+.boutonDepart {
     grid-area: bouton;
+}
+.boutonDepart:hover,
+.boutonDepart:focus {
+    transition: 1s;
+    background-color: #FFE071;
 }
 
 /* Questions */
@@ -112,7 +117,7 @@ body{
             "image image image image"
             "choix choix choix choix"
             "message message message message"
-            ". bouton bouton .";
+            "bouton bouton bouton bouton";
         max-width: 1000px;
         margin: 0 auto;
         padding: 0;
@@ -163,16 +168,16 @@ body{
     }
 }
 
-#Q1A {
+.a {
     grid-area: a;
 }
-#Q1B {
+.b {
     grid-area: b;
 }
-#Q1C {
+.c {
     grid-area: c;
 }
-#Q1D {
+.d {
     grid-area: d;
 }
 
@@ -188,12 +193,12 @@ body{
 
 }
 .texteQuestion {
-
     padding: 2em;
     /* border: 1px solid #333; */
-    background-image: url(../images/svg/boutonReponse.svg);
+    background-image: url(../images/svg/boutonReponse.svg); 
     background-repeat: no-repeat;
     background-size:contain;
+    width:100%;
 
 }
 .texteQuestion:hover {
@@ -202,9 +207,11 @@ body{
     background-repeat: no-repeat;
     background-size:contain;
 
-
 }
 
+.texteQuestion div img{
+    width: 100%;
+}
 /* Footer */
 footer {
 

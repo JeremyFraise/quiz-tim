@@ -37,11 +37,13 @@ const objJSON = {
 const quiz = {
 
     intNoQuestion: 0,
+    intNumeroQuestion: 1,
     intNbQuestions: 3,
     intNbBonnesReponses: 0,
     refDepart: document.querySelector('.depart'),
     arrQuestion: document.querySelectorAll(".question"),
     refCtnBoutonSubmit: document.querySelector('.ctnBoutonSubmit'),
+    refReponseChoisie: null,
     // arrBoutonsQuestions: document.querySelectorAll('#btnValider'),
 
     initierQuiz: function () {
@@ -51,6 +53,7 @@ const quiz = {
         // Créer le bouton pour démarrer le quiz
         const refBoutonStart = document.createElement('button');
         refBoutonStart.textContent = 'Démarrer le quiz';
+        refBoutonStart.classList.add('boutonDepart')
         this.refDepart.appendChild(refBoutonStart);
 
         // Ajouter un écouteur d'événement au bouton
@@ -58,7 +61,6 @@ const quiz = {
 
         // Cacher les questions
         this.arrQuestion.forEach(function (refQuestion) {
-            console.log(refQuestion.classList);
             refQuestion.classList.add('visuallyhidden');
         })
         // Cacher le bouton de soumission du formulaire
@@ -87,9 +89,9 @@ const quiz = {
 
     /**
      * Affiche l'image associé à la réponse sélectionner
-     * @param {number} intNoDiv 
+     * @param {number} intNoRep 
      */
-    selectionImage: function (intNoDiv) {
+    selectionImage: function (intNoRep) {
 
         const refCtnBouton = document.querySelector(".ctnBouton__bouton");
 
@@ -99,41 +101,55 @@ const quiz = {
                 arrDescriptionQuestion[index].classList.add('visuallyhidden');
             }
         }
-        arrDescriptionQuestion[intNoDiv].classList.remove('visuallyhidden');
-
+        arrDescriptionQuestion[intNoRep].classList.remove('visuallyhidden');
+        // Récupère l'input
+        this.refReponseChoisie = arrQuestion[intNoRep];
+        // Active le bouton de validation
         refCtnBouton.disabled = false;
-
     },
 
 
+    /**
+     * 
+     * @param {*} e 
+     */
+    validerReponse: function (refBouton) {
 
-    validerReponse: function (idReponse) {
+        console.log(this.refReponseChoisie);
+        const refBoutonCourant = refBouton.currentTarget;
+        // const refReponseChoisie = document.querySelector('#' + this.arrQuestion[this.intNoQuestion].id + ' input[checked=true]');
 
-        console.log(idReponse);
-        let strQuestion = idReponse.substr(0,2);
-        console.log(strQuestion);
+        
+
+        let strIdReponse = this.refReponseChoisie.id;
+        console.log(strIdReponse);
+        let strQuestion = strIdReponse.substr(0,2);
+
 
         // Vérifie si l'utilisateur est près à poursuivre le jeu
-        if(this.arrBoutonsQuestions[0].innerText == "Poursuivre") {
-            console.log("ajoute et enlève class")
-            this.arrQuestion[0].classList.add("visuallyhidden");
-            this.arrQuestion[1].classList.remove("visuallyhidden");
+        if(refBoutonCourant.innerText == "Poursuivre") {
+
+            this.arrQuestion[this.intNoQuestion].classList.add("visuallyhidden");
+            this.intNoQuestion++;
+            this.arrQuestion[this.intNoQuestion].classList.remove("visuallyhidden");
+
 
         }
         else{
-            if(idReponse != "") {
-                if(idReponse === objJSON.bonnesReponses[0]) {
-                    document.querySelector('#question1 .messageBonneReponse').classList.remove('visuallyhidden');
-                    document.querySelector('#question1 .messageBonneReponse h3').innerText = objJSON.retroactions.positive;
-                    document.querySelector('#question1 .messageBonneReponse p').innerText = objJSON.explications[strQuestion];
-                }
-                else {
-                    document.querySelector('#question1 .messageMauvaiseReponse').classList.remove('visuallyhidden');
-                    document.querySelector('#question1 .messageMauvaiseReponse h3').innerText = objJSON.retroactions.negative;
-                    document.querySelector('#question1 .messageMauvaiseReponse p').innerText = objJSON.explications.strQuestion;
-                }
-                this.arrBoutonsQuestions[0].innerText = "Poursuivre";
+
+            if(strIdReponse === objJSON.bonnesReponses[this.intNoQuestion]) {
+                document.querySelector('#question' + this.intNumeroQuestion + ' .messageBonneReponse').classList.remove('visuallyhidden');
+                document.querySelector('#question' + this.intNumeroQuestion + ' .messageBonneReponse h3').innerText = objJSON.retroactions.positive;
+                document.querySelector('#question' + this.intNumeroQuestion + ' .messageBonneReponse p').innerText = objJSON.explications[strQuestion];
+                this.intNbBonnesReponses++;
             }
+            else {
+                document.querySelector('#question' + this.intNumeroQuestion + ' .messageMauvaiseReponse').classList.remove('visuallyhidden');
+                document.querySelector('#question' + this.intNumeroQuestion + ' .messageMauvaiseReponse h3').innerText = objJSON.retroactions.negative;
+                document.querySelector('#question' + this.intNumeroQuestion + ' .messageMauvaiseReponse p').innerText = objJSON.explications.strQuestion;
+            }
+            refBoutonCourant.innerText = "Poursuivre";
+
         }
     },
 
@@ -141,15 +157,13 @@ const quiz = {
         // Contenu
     }
     
+    
 };
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelector('body').classList.add('js');
     /* initier le quiz */
     quiz.initierQuiz();
 });
-// document.getElementById('btnCommencer').addEventListener('click', function() {
-//      quiz.debuterQuiz();
-// });
 for(let index = 0; index < arrQuestion.length; index++) {
     arrQuestion[index].addEventListener('click', function() {
         quiz.selectionImage(index);
