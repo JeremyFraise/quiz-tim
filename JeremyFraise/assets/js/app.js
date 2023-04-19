@@ -82,7 +82,7 @@ const quiz = {
         // Afficher la question
         arrQuestion[this.intNoQuestion].classList.remove('visuallyhidden');
         // Créer un paragraphe
-        const refCtnBouton = document.createElement('p');
+        const refCtnBouton = document.createElement('div');
         refCtnBouton.classList.add('ctnBouton');
         // Y ajouter le bouton de validation de la question 
         refCtnBouton.innerHTML = '<button type="button" class="ctnBouton__bouton" disabled>Valider ma réponse</button>';
@@ -135,17 +135,17 @@ const quiz = {
         if(refBoutonCourant.innerText == "Poursuivre") {
 
             refBoutonCourant.remove();
+            console.log(refBoutonCourant);
             arrQuestion[this.intNoQuestion].classList.add("visuallyhidden");
             this.intNoQuestion++;
             intNumeroQuestion++;
             arrQuestion[this.intNoQuestion].classList.remove("visuallyhidden");
             
-            let refCtnBouton = document.createElement('p');
+            const refCtnBouton = document.createElement('div');
             refCtnBouton.classList.add('ctnBouton');
             // Y ajouter le bouton de validation de la question 
             refCtnBouton.innerHTML = '<button type="button" class="ctnBouton__bouton" disabled>Valider ma réponse</button>';
-            console.log(refCtnBouton)
-            arrQuestion[this.intNoQuestions].appendChild(refCtnBouton);
+            arrQuestion[this.intNoQuestion].appendChild(refCtnBouton);
             // Ajouter un écouteur d'événement au bouton
             refCtnBouton.querySelector('.ctnBouton__bouton').addEventListener('click', this.validerReponse.bind(this));
 
