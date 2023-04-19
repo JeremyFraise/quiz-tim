@@ -19,7 +19,7 @@ const objJSON = {
     },
     "bonnesReponses": [
         "Q1D",
-        "Q2A",
+        "Q2B",
         "Q3C"
     ],
     "messages": {

@@ -97,7 +97,7 @@ body{
     "boutonQ";
 
 }
-@media only screen and (min-width: 799px) {
+@media only screen and (min-width: 499px) {
     .question {
         /* grid-template-columns: auto 20%; */
         grid-template-areas:
@@ -109,7 +109,7 @@ body{
             
     }
 }
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 899px) {
     .question {
         grid-template-areas:
             "question question question question"
@@ -156,15 +156,15 @@ body{
     
 
 }
-@media only screen and (min-width: 799px) {
+@media only screen and (min-width: 599px) {
     .choix {
-        grid-template-columns: 1.1fr 1fr;
+        grid-template-columns: 1fr 1fr;
         grid-template-areas:
             "a b"
             "c d";
     }
 }
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 899px) {
     .choix {
         grid-template-columns: 3% 47% 47% 3%;
         grid-template-areas:
