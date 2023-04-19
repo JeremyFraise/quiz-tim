@@ -91,10 +91,10 @@ body{
 
     grid-template-areas: 
     "question"
-    "image"
+    "media"
     "choix"
     "message"
-    "bouton";
+    "boutonQ";
 
 }
 @media only screen and (min-width: 799px) {
@@ -102,22 +102,21 @@ body{
         /* grid-template-columns: auto 20%; */
         grid-template-areas:
             "question question"
-            "image  image"
+            "media  media"
             "choix choix"
             "message message"
-            "bouton bouton";
+            "boutonQ boutonQ";
             
     }
 }
 @media only screen and (min-width: 1000px) {
     .question {
-        grid-template-columns: auto 20% 20% auto;
         grid-template-areas:
             "question question question question"
-            "image image image image"
+            "media media media media"
             "choix choix choix choix"
             "message message message message"
-            "bouton bouton bouton bouton";
+            "boutonQ boutonQ boutonQ boutonQ";
         max-width: 1000px;
         margin: 0 auto;
         padding: 0;
@@ -128,10 +127,17 @@ body{
     grid-area: question;
 }
 .image {
-    grid-area: image;
+    grid-area: media;
+}
+.video {
+    grid-area: media;
+    width: 100%;
 }
 .choix {
     grid-area: choix;
+}
+.ctnBouton {
+    grid-area: boutonQ;
 }
 .messageBonneReponse {
     grid-area: message;
@@ -152,15 +158,15 @@ body{
 }
 @media only screen and (min-width: 799px) {
     .choix {
-        grid-template-columns: 1fr 0.9fr;
+        grid-template-columns: 1.1fr 1fr;
         grid-template-areas:
             "a b"
             "c d";
     }
 }
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 1200px) {
     .choix {
-        grid-template-columns: 5% 45% 45% 5%;
+        grid-template-columns: 3% 47% 47% 3%;
         grid-template-areas:
             "a . . b"
 
@@ -190,27 +196,72 @@ body{
 .choixQuestion {
 
     appearance: none;
+    overflow: hidden;
 
 }
 .texteQuestion {
     padding: 2em;
-    /* border: 1px solid #333; */
     background-image: url(../images/svg/boutonReponse.svg); 
     background-repeat: no-repeat;
-    background-size:contain;
-    width:100%;
-
+    background-size:100%;
 }
-.texteQuestion:hover {
+@media(min-width:799px) {
+    .texteQuestion {
+        background-size: 75%;
+    }
+}
+.testeQuestion__etat:hover {
 
+    transition: 0.2s;
     background-image: url(../images/svg/boutonReponse__hover.svg);
     background-repeat: no-repeat;
-    background-size:contain;
 
 }
+.choixQuestion:checked + .testeQuestion__etat,
+.testeQuestion__etat:focus {
+    transition: 0.3s;
+    background-image: url(../images/svg/boutonReponse__clicked.svg);
+    background-repeat: no-repeat;
 
-.texteQuestion div img{
+}
+.bonneReponse {
+    background-image: url(../images/svg/boutonReponse__bon.svg);
+    background-repeat: no-repeat;
+}
+.mauvaiseReponse {
+    background-image: url(../images/svg/boutonReponse__mauvais.svg);
+    background-repeat: no-repeat;
+}
+
+.descriptionCache {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 100%;
+}
+@media(min-width: 799px) {
+    .descriptionCache {
+        width: 70%;
+    }
+}
+
+/* .descriptionCache img{
+    width: 70%;
+} */
+
+/* Bouton des question */
+.ctnBouton__bouton {
+
+    padding: 0.5em;
+    color: #333;
+    background-color: #8FE4FF;
+    stroke: #8F1;
+
+}
+.ctnBouton__bouton:disabled {
+    color: #777;
+    background-color: #AAA;
+    stroke: none;
 }
 /* Footer */
 footer {
