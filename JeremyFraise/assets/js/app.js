@@ -9,8 +9,8 @@ des input[type=radio] */
 
 const objJSON = {
     "retroactions": {
-        "positive": "Pouce en l'air",
-        "negative": "Non hon mais presque..."
+        "positive": "Bonne réponse",
+        "negative": "Mauvaise réponse"
     },
     "explications": {
         "Q1": "En effet, le réalisme n’est pas un principe fondamental de l’animation. Il s'agit en réalité d'une approche parmi tant d'autre du style de l'art. Le niveau de détails d’une oeuvre est lié au style et à l’atmosphère que l’artiste souhaite transmettre.",
@@ -19,8 +19,8 @@ const objJSON = {
     },
     "bonnesReponses": [
         "Q1D",
-        "Q2B",
-        "Q3C"
+        "Q2D",
+        "Q3A"
     ],
     "messages": {
         "resultatsDebut": "Vous avez obtenu un résultat de",
@@ -45,16 +45,16 @@ const quiz = {
     intNoQuestion: 0,
     intNbQuestions: 3,
     intNbBonnesReponses: 0,
-    arrPositionBonnesReponses: new Array(3, 2, 1),
+    arrPositionBonnesReponses: new Array(3, 1, 0),
     refDepart: document.querySelector('.depart'),
     refCtnBoutonSubmit: document.querySelector('.ctnBoutonSubmit'),
     refReponseChoisie: null,
     refLabelReponseChoisi: null,
-    // arrBoutonsQuestions: document.querySelectorAll('#btnValider'),
+    refResultat: document.querySelector('.resultat'),
 
     initierQuiz: function () {
         // Afficher l'intro  
-        this.refDepart.classList.remove('visuallyhidden');
+        this.refDepart.classList.remove('cache');
 
         // Créer le bouton pour démarrer le quiz
         const refBoutonStart = document.createElement('button');
@@ -67,20 +67,20 @@ const quiz = {
 
         // Cacher les questions
         arrQuestion.forEach(function (refQuestion) {
-            refQuestion.classList.add('visuallyhidden');
+            refQuestion.classList.add('cache');
         })
         // Cacher le bouton de soumission du formulaire
         this.refCtnBoutonSubmit.classList.add('visuallyhidden');
     },
     demarrerQuiz: function () {
         // Cacher l'intro       
-        this.refDepart.classList.add('visuallyhidden');
+        this.refDepart.classList.add('cache');
         // Afficher la première question
         this.afficherQuestion();
     },
     afficherQuestion: function () {
         // Afficher la question
-        arrQuestion[this.intNoQuestion].classList.remove('visuallyhidden');
+        arrQuestion[this.intNoQuestion].classList.remove('cache');
         // Créer un paragraphe
         const refCtnBouton = document.createElement('div');
         refCtnBouton.classList.add('ctnBouton');
@@ -101,12 +101,12 @@ const quiz = {
         const refCtnBouton = document.querySelector(".ctnBouton__bouton");
         // Ajoute la classe visuallyhidden aux descriptions qui ne l'ont plus (ex: Après avoir changé de choix de réponse, la description de la réponse choisi auparavant sera caché.)
         for(let index = 0; index < arrDescriptionQuestion.length; index++) {
-            if(arrDescriptionQuestion[index].classList != 'visuallyhidden') {
-                arrDescriptionQuestion[index].classList.add('visuallyhidden');
+            if(arrDescriptionQuestion[index].classList != 'cache') {
+                arrDescriptionQuestion[index].classList.add('cache');
             }
         }
         // Enlève la classe visuallyhidden à la description de l'input selectionné
-        arrDescriptionQuestion[intNoRep].classList.remove('visuallyhidden');
+        arrDescriptionQuestion[intNoRep].classList.remove('cache');
         // Récupère l'input de la réponse sélectionnée
         this.refReponseChoisie = arrChoixQuestion[intNoRep];
         this.refLabelReponseChoisi = arrLabelChoixTotal[intNoRep];
@@ -133,21 +133,27 @@ const quiz = {
 
         // Vérifie si l'utilisateur a déjà répondu et qu'il est prêt à poursuivre
         if(refBoutonCourant.innerText == "Poursuivre") {
-
             refBoutonCourant.remove();
             console.log(refBoutonCourant);
-            arrQuestion[this.intNoQuestion].classList.add("visuallyhidden");
+            arrQuestion[this.intNoQuestion].classList.add("cache");
             this.intNoQuestion++;
             intNumeroQuestion++;
-            arrQuestion[this.intNoQuestion].classList.remove("visuallyhidden");
-            
-            const refCtnBouton = document.createElement('div');
-            refCtnBouton.classList.add('ctnBouton');
-            // Y ajouter le bouton de validation de la question 
-            refCtnBouton.innerHTML = '<button type="button" class="ctnBouton__bouton" disabled>Valider ma réponse</button>';
-            arrQuestion[this.intNoQuestion].appendChild(refCtnBouton);
-            // Ajouter un écouteur d'événement au bouton
-            refCtnBouton.querySelector('.ctnBouton__bouton').addEventListener('click', this.validerReponse.bind(this));
+            // Si l'utilisateur est encore aux trois questions
+            if(this.intNoQuestion < this.intNbQuestions) {
+                arrLabelChoixCourant = document.querySelectorAll("#question" + intNumeroQuestion + " .texteQuestion");
+                arrQuestion[this.intNoQuestion].classList.remove("cache");
+                const refCtnBouton = document.createElement('div');
+                refCtnBouton.classList.add('ctnBouton');
+                // Y ajouter le bouton de validation de la question 
+                refCtnBouton.innerHTML = '<button type="button" class="ctnBouton__bouton" disabled>Valider ma réponse</button>';
+                arrQuestion[this.intNoQuestion].appendChild(refCtnBouton);
+                // Ajouter un écouteur d'événement au bouton
+                refCtnBouton.querySelector('.ctnBouton__bouton').addEventListener('click', this.validerReponse.bind(this));
+            }
+            // Sinon il a terminé
+            else{
+               this.afficherResultats();
+            }
 
         }
         else{
@@ -156,7 +162,7 @@ const quiz = {
                 // Ajoute la classe bonneReponse au label du choix sélectionné (this.refLabelReponseChoisi)
                 this.refLabelReponseChoisi.classList.add('bonneReponse');
                 // Dévoile les rétroactions
-                document.querySelector('#question' + intNumeroQuestion + ' .messageBonneReponse').classList.remove('visuallyhidden');
+                document.querySelector('#question' + intNumeroQuestion + ' .messageBonneReponse').classList.remove('cache');
                 document.querySelector('#question' + intNumeroQuestion + ' .messageBonneReponse h3').innerText = objJSON.retroactions.positive;
                 document.querySelector('#question' + intNumeroQuestion + ' .messageBonneReponse p').innerText = objJSON.explications[strQuestion];
 
@@ -167,7 +173,7 @@ const quiz = {
                 refLabelBonneReponse.classList.add('bonneReponse');
                 this.refLabelReponseChoisi.classList.add('mauvaiseReponse');
                 // Dévoile les rétroactions
-                document.querySelector('#question' + intNumeroQuestion + ' .messageMauvaiseReponse').classList.remove('visuallyhidden');
+                document.querySelector('#question' + intNumeroQuestion + ' .messageMauvaiseReponse').classList.remove('cache');
                 document.querySelector('#question' + intNumeroQuestion + ' .messageMauvaiseReponse h3').innerText = objJSON.retroactions.negative;
                 document.querySelector('#question' + intNumeroQuestion + ' .messageMauvaiseReponse p').innerText = objJSON.explications[strQuestion];
             };
@@ -177,6 +183,7 @@ const quiz = {
             
             for(let index = 0; index < arrChoixCourant.length; index++) {
                 arrLabelChoixCourant[index].classList.remove('testeQuestion__etat');
+                console.log(arrLabelChoixCourant[index].classList);
                 arrChoixCourant[index].checked = false;
                 arrChoixCourant[index].disabled = true;
             };
@@ -187,7 +194,14 @@ const quiz = {
 
     afficherResultats: function () {
         // Contenu
-    }
+        console.log(this.refResultat);
+        this.refResultat.classList.remove("cache");   
+    },
+
+    empecherEnvoiFormulaire: function (e) {
+        console.log(e);
+        e.preventDevault();
+    },
     
     
 };
@@ -201,5 +215,8 @@ for(let index = 0; index < arrChoixQuestion.length; index++) {
         quiz.selectionImage(index);
     });
 };
+document.querySelector("form").addEventListener("submit", function() {
+    quiz.empecherEnvoiFormulaire();
+});
     
 
