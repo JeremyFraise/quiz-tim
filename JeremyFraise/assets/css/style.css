@@ -10,7 +10,43 @@
 @import url(utilitaires.css);
 @import url(base.css);
 
-/* AJOUTER UNE TABLE DES MATIÈRES POUR POUVOIR NAVIGUER LA CSS*/
+/* AJOUTER UNE TABLE DES MATIÈRES POUR POUVOIR NAVIGUER LA CSS
+*
+*
+*
+*
+*/
+
+/* Typographie */
+
+:root {
+    font-family: Inter, Helvetica, sans-serif;
+    color: #333;
+    line-height: 150%;
+}
+.titreQuestion, .resultat__h3 {
+    font-family: 'Indie Flower';
+    font-size: 25px;
+    text-decoration: underline 3px #333;
+}
+.texteQuestion p{
+    font-family: 'Margarine';
+}
+.retroaction h3 {
+    font-family: 'Klee One';
+}
+@media(min-width: 599px) {
+    .titreQuestion {
+        font-size: 30px;
+    }
+}
+@media(min-width: 799px) {
+    .titreQuestion {
+        font-size: 40px;
+    }
+}
+
+/* Contenu */
 body{
     background-image: url(../images/background-image_1920w.jpg);
 }
@@ -67,12 +103,11 @@ body{
 }
 .titre {
     grid-area: entete;
-    
     margin-bottom: 6em;
 }
 @media(min-width: 599px) {
     .titre {
-        /* max-width: 600px;  */
+        max-width: 600px; 
     }
 }
 .contenuDepart {
@@ -84,12 +119,22 @@ body{
 }
 .boutonDepart {
     grid-area: bouton;
-    
+    width: 12em;
+    height: 45px;
+    border: 3px solid #333;
+    border-radius: 12px;
+    background-color: #FFF; 
+    margin: 0 auto;
 }
 .boutonDepart:hover,
 .boutonDepart:focus {
     transition: 1s;
     background-color: #FFE071;
+}
+@media (min-width: 599px) {
+    .boutonDepart {
+        margin: 0 0;
+    }
 }
 
 /*
@@ -98,8 +143,14 @@ body{
 *
 */
 
+.enonceQuestion {
+    width: 100%;
+    background-color: rgba(175, 217, 255, 0.5);
+}
+
 /* Mise en page des articles avec la classe .question */
 .question{
+    border: none;
     grid-template-areas: 
     "question"
     "media"
@@ -167,8 +218,10 @@ body{
     .choix {
         grid-template-columns: 1fr 1fr;
         grid-template-areas:
-            "a b"
-            "c d";
+            "a a"
+            "b b"
+            "c c"
+            "d d";
     }
 }
 @media only screen and (min-width: 899px) {
@@ -200,11 +253,15 @@ body{
 }
 /* État des label de question */
 .texteQuestion {
-    padding: 6em;
+    padding: 3em 2em 6em 2em;
+    margin: 60px 0;
     background-image: url(../images/svg/boutonReponse.svg); 
     background-repeat: no-repeat;
     background-size:100%;
     transition: background-image 0.3s;
+}
+@media(min-width:199px) {
+    
 }
 @media(min-width:599px) {
     .texteQuestion {
@@ -244,13 +301,15 @@ body{
 @media(min-width: 599px) {
     .descriptionCache {
         transform: translateY(2.5em);
-        padding-right: 8em;
+        padding-right: 6em;
     }
 }
 .description__img {
     width: 100%;
 }
-
+.descriptionCache p{
+    font-family: Inter, Helvetica, sans-serif;
+}
 /* Bouton */
 .ctnBouton__bouton {
     width: 100%;
@@ -286,7 +345,54 @@ body{
     border: 3px solid #333;
 }
 
+/*
+*
+* Résultat
+*
+*/
+.logoPageResultat{
+    max-width: 400px;
+    margin: 1em auto;
+}
 
+#resultatSur3 {
+    padding: 0 0 0 0.2em;
+    font-size: 4vh;
+}
+.parentResultat {
+    position:relative;
+    margin-bottom: 15rem;
+}
+.rect {
+    position: absolute;
+    width: 1000px;
+    height: 220px;
+    left: -40px;
+    top: -15px;
+    border: 3px solid #333;
+    background-color: rgba(186,255,99,0.2);
+}
+@media(min-width:850px) {
+    
+    .rect {
+        left: -150px;
+        top: -15px;
+        border: 3px solid #333;
+        background-color: rgba(186,255,99,0.2);
+    }
+}
+
+
+.ctnBoutonRecommencer {
+    margin-top: 70px;
+}
+.ctnBoutonRecommencer__bouton {
+    width: 12em;
+    height: 45px;
+    border: 3px solid #333;
+    border-radius: 12px;
+    background-color: #FFF;
+}
 
 /*
 *
@@ -294,19 +400,15 @@ body{
 *
 */
 footer {
-
     margin: 10em 0 0 0;
     padding: 5em;
     background-color: #01232E;
-
 }
 footer p{
-
     text-align: center;
     padding: 1em 0 1em 0;
     color: #FFF;
     margin-block-end: 0;
-
 }
 
 /* Utilitaire */

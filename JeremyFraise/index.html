@@ -148,23 +148,19 @@
                         </g>
                 </svg>
             </div>
-                
-                
-                <p class="contenu">Testez vos connaissances sur l’animation et ces principes fondamentaux.</p>
-
-                <figure class="gif">
-                    <img src="assets/images/mickey-mouse-steamboat-willie.gif">
-                </figure>
-
-                <!-- <button class="bouton" id="btnCommencer">Démarrer le quiz</button> -->
-                
-            </article>
+            
+            <p class="contenu">Testez vos connaissances sur l’animation et ces principes fondamentaux.</p>
+            <figure class="gif">
+                <img src="assets/images/mickey-mouse-steamboat-willie.gif">
+            </figure>
+        </article>
         
         <form class="formulaire" action="" method="">
-            <article class="question" id="question1">
+            <fieldset class="question" id="question1">
                 <div class="enonceQuestion">
                     <h2 class="titreQuestion">Question 1/3</h2>
-                    <p>Lequel des choix suivants ne fait pas parti des 12 principes de l’animation décrit par Ollie 
+                    <p>
+                        Lequel des choix suivants ne fait pas parti des 12 principes de l’animation décrit par Ollie 
                         Johnston et Frank Thomas dans le livre The Illusion of Life?
                     </p>
                 </div>
@@ -182,7 +178,9 @@
                         <p>Anticipation</p>
                         <div class="descriptionCache cache">
                             <img class="description__img" src="assets/images/834/question1_image1.jpg" alt>
-                            <p>L'anticipation concerne la préparation qu'une action nécessite pour solidifier le mouvement. Par exemple, un saut avec une longue anticipation annonce que l'individu aille plus loin que sans anticipation.</p>
+                            <p>
+                                L'anticipation concerne la préparation qu'une action nécessite pour solidifier le mouvement. Par exemple, un saut avec une longue anticipation annonce que l'individu aille plus loin que sans anticipation.
+                            </p>
                         </div>
                     </label>
     
@@ -191,7 +189,9 @@
                         <p>Amorti en début et fin de mouvement</p>
                         <div class="descriptionCache cache">
                             <img class="description__img" src="assets/images/834/question1_image3.jpg" alt>
-                            <p>Elle concerne l'accélération et la décélération </p>
+                            <p>
+                                Elle concerne l'accélération et la décélération du mouvement d'un objet («slow in» et «slow out»). Par exemple, dans le cas d'une balle qui roule, il y aura davantages d'images en début et fin du mouvement.
+                            </p>
                         </div>
                     </label>
     
@@ -200,7 +200,9 @@
                         <p>Arc</p>
                         <div class="descriptionCache cache">
                             <img class="description__img" src="assets/images/834/question1_image2.jpg" alt>
-                            <p></p>
+                            <p>
+                                C'est la trajectoire arquée que prennent tous les objets en l'air ainsi que les personnage qui sautent.
+                            </p>
                         </div>
                     </label>
     
@@ -209,24 +211,24 @@
                         <p>Réalisme</p>
                         <div class="descriptionCache cache">
                             <img class="description__img" src="assets/images/200/question1_image4.jpg" alt>
-                            <p></p>
+                            <p>Mouvement artistique caractérisé par une quête de la réalité dans son plus réel, sans l'idéaliser ou la modifier.</p>
                         </div>
                     </label>
                 </div>
     
-                <div class="messageBonneReponse cache">
+                <div class="retroaction messageBonneReponse cache">
                     <h3></h3> <!--Message bonne réponse-->
                     <p></p>
                 </div>
                 
-                <div class="messageMauvaiseReponse cache">
+                <div class="retroaction messageMauvaiseReponse cache">
                     <h3></h3> <!--Message mauvaise réponse-->
                     <p></p>
                 </div>
                 
                 
-            </article>
-            <article class="question cache" id="question2">
+            </fieldset>
+            <fieldset class="question cache" id="question2">
     
                 <div class="enonceQuestion">
                     <h2 class="titreQuestion">Question 2/3</h2>
@@ -235,7 +237,7 @@
     
                     <!--Vidéo-->
                     <video class="video" width="1200" height="" controls muted>
-                        <source src="assets/images/animation_q2.mp4" type="video/mp4" >
+                        <source src="assets/images/animation_q2.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                     
@@ -244,18 +246,22 @@
                     <div class="choix">
                         <input id="Q2A" class="a choixQuestion" type="radio" name="Q2">
                         <label for="Q2A" class="texteQuestion testeQuestion__etat">
-                            <p>Amorti en début et fin de mouvement</p>
+                            <p class="">Amorti en début et fin de mouvement</p>
                             <div class="descriptionCache cache">
                                 <img class="description__img" src="assets/images/834/question2_image1.jpg" alt>
-                                <p></p>
+                                <p>
+                                    Elle concerne l'accélération et la décélération du mouvement d'un objet («slow in» et «slow out»). Par exemple, dans le cas d'une balle qui roule, il y aura davantages d'images en début et fin du mouvement.
+                                </p>
                             </div>
                         </label>
-                        <input id="Q2B" class="b choixQuestion" type="radio" name="Q2">
+                        <input id="Q2B" class="b choixQuestion" type="radio" name="Q2"> 
                         <label for="Q2B" class="texteQuestion testeQuestion__etat">
                             <p>Exagération</p>
                             <div class="descriptionCache cache">
                                 <img class="description__img" src="assets/images/834/question2_image2.jpg" alt>
-                                <p></p>
+                                <p>
+                                    C'est une représentation plus poussée et extrême de la réalité permettant à l'animateur de mettre l'accent sur une ambiance ou une action. 
+                                </p>
                             </div>
                         </label>
                         <input id="Q2C" class="c choixQuestion" type="radio" name="Q2">
@@ -263,7 +269,9 @@
                             <p>Cohérence physique/théâtrale</p>
                             <div class="descriptionCache cache">
                                 <img class="description__img" src="assets/images/834/question2_image3.jpg" alt>
-                                <p></p>
+                                <p>
+                                    C'est le principe dans lequel la position d'un objet d'une image à l'autre détermine la vitesse du mouvement et le poids de l'objet.
+                                </p>
                             </div>
                         </label>
 
@@ -272,38 +280,40 @@
                             <p>Compression et étirement</p>
                             <div class="descriptionCache cache">
                                 <img class="description__img" src="assets/images/834/question2_image4.jpg" alt>
-                                <p></p>
+                                <p>
+                                    Principe appliqué dans le but de donner aux objets l'illusion de la gravité, du poids, de la masse et de la flexibilité, et ce, tout en conservant son volume d'origine.
+                                </p>
                             </div>
                         </label>
                     </div> 
+                    
     
-                <div class="messageBonneReponse cache">
+                <div class="retroaction messageBonneReponse cache">
                     <h3></h3> <!--Message bonne réponse-->
                     <p></p>
                 </div>
                 
-                <div class="messageMauvaiseReponse cache">
+                <div class="retroaction messageMauvaiseReponse cache">
                     <h3></h3> <!--Message mauvaise réponse-->
                     <p></p>
                 </div>
     
                 <!-- <button class="bouton" id="btnValider">Valider la réponse</button> -->
     
-            </article>
-            <article class="question cache" id="question3">
+            </fieldset>
+            <fieldset class="question cache" id="question3">
     
                 <div class="enonceQuestion">
                     <h2 class="titreQuestion">Question 3/3</h2>
-                    <p>Quelle principe d'animation est illustré dans le clip suivant?</p>
+                    <p>Autre que le principe de compression/étirement, quelle principe d'animation est illustré dans le clip suivant?</p>
                 </div>
     
 
     
-                <!--Vidéo pour la présentation-->
-                <!-- <video>
-                    <source>
-                    <source>
-                </video> -->
+                <video class="video" width="1200" height="" controls muted>
+                    <source src="assets/images/animation_q3.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
 
                 <!--Question 3-->
                 <div class="choix">
@@ -312,7 +322,9 @@
                         <p>Anticipation</p>
                         <div class="descriptionCache cache">
                             <img class="description__img" src="assets/images/834/question1_image1.jpg" alt>
-                            <p></p>
+                            <p>
+                                L'anticipation concerne la préparation qu'une action nécessite pour solidifier le mouvement. Par exemple, un saut avec une longue anticipation annonce que l'individu aille plus loin que sans anticipation.
+                            </p>
                         </div>
                     </label>
                     <input id="Q3B" class="b choixQuestion" type="radio" name="Q3">
@@ -320,7 +332,9 @@
                         <p>Cohérence physique/théâtrale</p>
                         <div class="descriptionCache cache">
                             <img class="description__img" src="assets/images/834/question2_image3.jpg" alt>
-                            <p></p>
+                            <p>
+                                C'est le principe dans lequel la position d'un objet d'une image à l'autre détermine la vitesse du mouvement et le poids de l'objet.
+                            </p>
                         </div>
                     </label>
                     <input id="Q3C" class="c choixQuestion" type="radio" name="Q3">
@@ -328,7 +342,9 @@
                         <p>Exagération</p>
                         <div class="descriptionCache cache">
                             <img class="description__img" src="assets/images/834/question2_image2.jpg" alt>
-                            <p></p>
+                            <p>
+                                C'est une représentation plus poussée et extrême de la réalité permettant à l'animateur de mettre l'accent sur une ambiance ou une action. 
+                            </p>
                         </div>
                     </label>
                     <input id="Q3D" class="d choixQuestion" type="radio" name="Q3">
@@ -336,40 +352,42 @@
                         <p>Arc</p>
                         <div class="descriptionCache cache">
                             <img class="description__img" src="assets/images/834/question1_image2.jpg" alt>
-                            <p></p>
+                            <p>
+                                C'est la trajectoire arquée que prennent tous les objets en l'air ainsi que les personnage qui sautent.
+                            </p>
                         </div>
                     </label>
                 </div>
-    
-                
                     
-                <div class="messageBonneReponse cache">
+                <div class="retroaction messageBonneReponse cache">
                     <h3></h3> <!--Message bonne réponse-->
                     <p></p>
                 </div>
                 
-                <div class="messageMauvaiseReponse cache">
+                <div class="retroaction messageMauvaiseReponse cache">
                     <h3></h3> <!--Message mauvaise réponse-->
                     <p></p>
                 </div>
-                
     
-                <!-- <button class="bouton" id="btnValider">Valider la réponse</button> -->
+            </fieldset>
 
-                <!--Bouton submit-->
-    
-            </article>
-
-            <div class="ctnBouton ctnBoutonSubmit">
-                <button class="bouton" type="submit" id='validerQuiz' name='validerQuiz' value="true">Valider mes
-                    choix</button>
-            </div>
         </form>
 
         
         <article class="resultat cache">
 
-            <p>Paul</p>
+            <img class="logoPageResultat" src="assets/images/svg/logo.svg" alt="L'animation: l'art du mouvement">
+
+            <h2>Résultats</h2>
+
+            <div class="parentResultat">    
+                <div class="rect"></div>
+                <section class="contenuResultat">
+                    <h3 class="resultat__h3"></h3>
+                    <p>Tu as obtenu un score de <strong><span id="resultatSur3"></span>/3</strong></p>
+                    <p class="resultat__retroaction"></p>
+                </section>
+            </div>
 
         </article>
 
