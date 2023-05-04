@@ -9,13 +9,13 @@ des input[type=radio] */
 
 const objJSON = {
     "retroactions": {
-        "positive": "Bonne réponse",
-        "negative": "Mauvaise réponse"
+        "positive": "Bravo!",
+        "negative": "Mince!"
     },
     "explications": {
         "Q1": "En effet, le réalisme n’est pas un principe fondamental de l’animation. Il s'agit en réalité d'une approche parmi tant d'autre du style de l'art. Le niveau de détails d’une oeuvre est lié au style et à l’atmosphère que l’artiste souhaite transmettre.",
         "Q2": "Il s'agit du principe de compression/étirement. Au moment d'attérir, la balle s'étire en longueur et puis se compresse en hauteur alors que lors du rebond, la balle se décompresse et retrouve sa taille d'origine.",
-        "Q3": "Explications de la question 3"
+        "Q3": "Il s'agit donc du principe d'anticipation. Le saut que prend l'objet vient après une courte préparation, annonçant l'action."
     },
     "bonnesReponses": [
         "Q1D",
@@ -26,7 +26,7 @@ const objJSON = {
         "note0": "Tu aurais pu faire mieux. Je te suggère de recommencer pour augmenter ton score",
         "note33": "Tu aurais pu faire mieux. Je te suggère de recommencer pour augmenter ton score",
         "note66": "Tu as une bonne connaissance générale de l'animation",
-        "note100": "Tu es un fin connaisseur !"
+        "note100": "Tu es un fin connaisseur!"
     }
 };
 
@@ -70,7 +70,6 @@ const quiz = {
             refQuestion.classList.add('cache');
         })
 
-        this.arrLabelChoixCourant = document.querySelectorAll("#question" + this.intNumeroQuestion + " .texteQuestion");
         // Cacher le bouton de soumission du formulaire
         // this.refCtnBoutonSubmit.classList.add('cache');
 
@@ -91,6 +90,7 @@ const quiz = {
         this.afficherQuestion();
     },
     afficherQuestion: function () {
+        this.arrLabelChoixCourant = document.querySelectorAll("#question" + this.intNumeroQuestion + " .texteQuestion");
         // Afficher la question
         this.arrQuestion[this.intNoQuestion].classList.remove('cache');
         // Créer un paragraphe
@@ -139,6 +139,7 @@ const quiz = {
 
         // Cible le bouton de la question
         const refBoutonCourant = refBouton.currentTarget;
+        // this.arrLabelChoixCourant = document.querySelectorAll("#question" + this.intNumeroQuestion + " .texteQuestion");
        
         let strIdReponse = this.refReponseChoisie.id;
         let strQuestion = strIdReponse.substr(0,2);
@@ -191,9 +192,9 @@ const quiz = {
                 document.querySelector('#question' + this.intNumeroQuestion + ' .messageMauvaiseReponse p').innerText = objJSON.explications[strQuestion];
             };
 
-            //Erreur
             refBoutonCourant.innerText = "Poursuivre";
-            let arrChoixCourant = document.querySelectorAll('.choixQuestion');
+            let arrChoixCourant = document.querySelectorAll('#question' + this.intNumeroQuestion + ' .choix .choixQuestion');
+            
             
             for(let index = 0; index < this.arrLabelChoixCourant.length; index++) {
                 this.arrLabelChoixCourant[index].classList.remove('testeQuestion__etat');
@@ -208,12 +209,9 @@ const quiz = {
     afficherResultats: function () {
         // Contenu
         this.refResultat.classList.remove("cache"); 
-        
 
-        
         const refH3Resultat = document.querySelector(".resultat__h3");
         const refRetroactionResultat = document.querySelector(".resultat__retroaction")
-
         const refSpanResultat = document.getElementById("resultatSur3");
         refSpanResultat.innerText = this.intNbBonnesReponses;
 
@@ -240,19 +238,9 @@ const quiz = {
             break;
         }
 
-        // Reinitialisation des variables
-        // intNumeroQuestion = ;
-        // this.intNbBonnesReponses= ;
-        // this.intNoQuestion = ;
-        
-        // Création d'un bouton pour recommencer le quiz
-        
-
     },
 
     reinitialiserQuiz: function() {
-        let arrChoixTotal = document.querySelectorAll('.choixQuestion');
-        // let arrLabelChoixTotal = document.querySelectorAll('.texteQuestion');
         
         for(let index = 1; index <= 3; index++) {
             document.querySelector('#question' + index + ' .messageBonneReponse h3').innerText = "";
@@ -274,14 +262,14 @@ const quiz = {
         
 
         console.log("T'es rendu après l'appel de fonction");
-        for(let intNoChoix = 0; intNoChoix < arrChoixTotal.length; intNoChoix++) {
+        for(let intNoChoix = 0; intNoChoix < this.arrChoixQuestion.length; intNoChoix++) {
 
             // Erreur rencontré: 
             this.arrLabelChoixTotal[intNoChoix].classList.add("testeQuestion__etat");
             this.arrLabelChoixTotal[intNoChoix].classList.remove("bonneReponse");
             this.arrLabelChoixTotal[intNoChoix].classList.remove("mauvaiseReponse");
-            arrChoixTotal[intNoChoix].disabled = false;   
-            arrChoixTotal[intNoChoix].checked = false;
+            this.arrChoixQuestion[intNoChoix].disabled = false;   
+            this.arrChoixQuestion[intNoChoix].checked = false;
         };
 
         console.log(this.arrLabelChoixTotal);
@@ -305,7 +293,7 @@ document.addEventListener('DOMContentLoaded', function () {
     quiz.initierQuiz();
 });
 for(let index = 0; index < quiz.arrChoixQuestion.length; index++) {
-    quiz.arrChoixQuestion[index].addEventListener('click', function() {
+    quiz.arrChoixQuestion[index].addEventListener('change', function() {
         quiz.selectionImage(index);
     });
 };
@@ -314,4 +302,6 @@ document.querySelector("form").addEventListener("submit", function() {
     quiz.empecherEnvoiFormulaire(objEvenement);
 });
     
+
+// Problêmes rencontrés -> Dans les questions 2 et 3, les choix ne sont pas disabled après la validation du choix de rép.
 
