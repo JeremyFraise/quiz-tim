@@ -23,8 +23,8 @@ const objJSON = {
         "Q3A"
     ],
     "messages": {
-        "note0": "Tu aurais pu faire mieux. Je te suggère de recommencer pour augmenter ton score",
-        "note33": "Tu aurais pu faire mieux. Je te suggère de recommencer pour augmenter ton score",
+        "note0": "Tu pourrait faire mieux. Je te suggère de recommencer pour augmenter ton score",
+        "note33": "Tu pourrais faire mieux. Je te suggère de recommencer pour augmenter ton score",
         "note66": "Tu as une bonne connaissance générale de l'animation",
         "note100": "Tu es un fin connaisseur!"
     }
@@ -55,6 +55,9 @@ const quiz = {
 
         // Afficher l'intro  
         this.refDepart.classList.remove('cache');
+        for(let index = 0; index < this.arrQuestion.length; index++) {
+            this.arrQuestion[index].classList.add('cache');
+        }
 
         // Créer le bouton pour démarrer le quiz
         const refBoutonStart = document.createElement('button');
@@ -304,4 +307,3 @@ document.querySelector("form").addEventListener("submit", function() {
     
 
 // Problêmes rencontrés -> Dans les questions 2 et 3, les choix ne sont pas disabled après la validation du choix de rép.
-
