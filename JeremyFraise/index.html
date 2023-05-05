@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <header role="banner">
+    <header class="header" role="banner">
         <a href="../index.html">
             <svg xmlns="http://www.w3.org/2000/svg" class="logoQuizTIM" viewBox="0 0 174.55 28.58"
                 aria-labelledby="libelleQuizTIM">
@@ -155,7 +155,7 @@
             </figure>
         </article>
         
-        <form class="formulaire" action="" method="">
+        <form role="quiz" class="formulaire" action="index.html" method="">
             <fieldset class="question" id="question1">
                 <div class="enonceQuestion">
                     <h2 class="titreQuestion">Question 1/3</h2>
@@ -165,12 +165,14 @@
                     </p>
                 </div>
     
-                <picture class="image">
-                    <source srcset="assets/images/720/banniereQuestion1.jpg" media="(max-width:600px)">
-                    <source srcset="assets/images/1668/banniereQuestion1.jpg" media="(max-width:1200px)">
-                    <img src="assets/images/2000/banniereQuestion1.jpg" alt="The Illusion of Life écrit par Frank Thomas et Ollie Johnston">
-                </picture>
-                
+                <div class="imageQ1">
+                    <picture class="image">
+                        <source srcset="assets/images/720/banniereQuestion1.jpg" media="(max-width:600px)">
+                        <source srcset="assets/images/1668/banniereQuestion1.jpg" media="(max-width:1200px)">
+                        <img src="assets/images/2000/banniereQuestion1.jpg" alt="The Illusion of Life écrit par Frank Thomas et Ollie Johnston">
+                    </picture>
+                    <p class="figcaption">Photomontage réalisé avec ces images:  https://www.flickr.com/photos/rosenfeldmedia/7171793274 et https://www.pexels.com/fr-fr/photo/planche-de-bois-marron-139322/</p>
+                </div>
                 <!--Question 1-->
                 <div class="choix">
                     <input id="Q1A" class="a choixQuestion" type="radio" name="Q1">
@@ -228,7 +230,7 @@
                 
                 
             </fieldset>
-            <fieldset class="question cache" id="question2">
+            <fieldset class="question" id="question2">
     
                 <div class="enonceQuestion">
                     <h2 class="titreQuestion">Question 2/3</h2>
@@ -301,7 +303,7 @@
                 <!-- <button class="bouton" id="btnValider">Valider la réponse</button> -->
     
             </fieldset>
-            <fieldset class="question cache" id="question3">
+            <fieldset class="question" id="question3">
     
                 <div class="enonceQuestion">
                     <h2 class="titreQuestion">Question 3/3</h2>
@@ -309,7 +311,6 @@
                 </div>
     
 
-    
                 <video class="video" width="1200" height="" controls muted>
                     <source src="assets/images/animation_q3.mp4" type="video/mp4">
                     Your browser does not support the video tag.
@@ -375,20 +376,17 @@
 
         
         <article class="resultat cache">
-
+            
             <img class="logoPageResultat" src="assets/images/svg/logo.svg" alt="L'animation: l'art du mouvement">
 
             <h2>Résultats</h2>
 
-            <div class="parentResultat">    
-                <div class="rect"></div>
-                <section class="contenuResultat">
-                    <h3 class="resultat__h3"></h3>
-                    <p>Tu as obtenu un score de <strong><span id="resultatSur3"></span>/3</strong></p>
-                    <p class="resultat__retroaction"></p>
-                </section>
+            <div class="contenuResultat">
+                <h3 class="resultat__h3"></h3>
+                <p>Tu as obtenu un score de <strong><span id="resultatSur3"></span>/3</strong></p>
+                <p class="resultat__retroaction"></p>
             </div>
-
+            
         </article>
 
     </main>

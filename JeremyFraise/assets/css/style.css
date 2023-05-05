@@ -9,6 +9,7 @@
 @import url(normalize.css);
 @import url(utilitaires.css);
 @import url(base.css);
+@import url(animations.css);
 
 /* AJOUTER UNE TABLE DES MATIÈRES POUR POUVOIR NAVIGUER LA CSS
 *
@@ -29,16 +30,10 @@
     font-size: 25px;
     text-decoration: underline 3px #333;
 }
-
 .texteQuestion p{
     font-family: 'Margarine';
 
 }
-/* @media(min-width: 599px) {
-    .texteQuestion p{
-
-    }
-} */
 .retroaction h3 {
     font-family: 'Klee One';
 }
@@ -138,6 +133,11 @@ body{
     transition: 1s;
     background-color: #FFE071;
 }
+.boutonDepart:active {
+    background-color: #333;
+    color: #FFF;
+    transition: 0.1s;
+}
 @media (min-width: 599px) {
     .boutonDepart {
         margin: 0 0;
@@ -149,11 +149,6 @@ body{
 * Questions
 *
 */
-
-.enonceQuestion {
-    width: 100%;
-    background-color: rgba(175, 217, 255, 0.5);
-}
 
 /* Mise en page des articles avec la classe .question */
 .question{
@@ -167,7 +162,7 @@ body{
 }
 @media only screen and (min-width: 599px) {
     .question {
-        grid-template-columns: auto 20%;
+        grid-template-columns: 1fr 1fr;
         grid-template-areas:
             "question question"
             "media media"
@@ -191,10 +186,32 @@ body{
 }
 .enonceQuestion {
     grid-area: question;
+    padding: 2em;
+    background-color: rgba(175, 217, 255, 0.5);
+}
+.imageQ1 {
+    grid-area: media;
+    position: relative;
 }
 .image {
-    grid-area: media;
+    width: 100%;
 }
+.figcaption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 1em 0.5em;
+    background-color:rgba(3, 3, 3, 0.7);
+    color: #FFF;
+    visibility:hidden;
+    margin-top: 100em;
+}
+.imageQ1:hover .figcaption{
+    visibility: visible;
+    margin-top: -100em;
+    transition: 5s ease-in;
+}
+
 .video {
     grid-area: media;
     width: 100%;
@@ -231,14 +248,14 @@ body{
             "d d";
     }
 }
-@media only screen and (min-width: 899px) {
+/* @media only screen and (min-width: 899px) {
     .choix {
-        grid-template-columns: 0.01fr 1fr 1fr 0.01fr;
+        grid-template-columns: 1fr 1fr;
         grid-template-areas:
-            "a . . b"
-            "c . . d";
+            "a b"
+            "c d";
     }
-}
+} */
 .a {
     grid-area: a;
 }
@@ -267,13 +284,16 @@ body{
     background-size:100%;
     transition: background-image 0.3s;
 }
-@media(min-width:199px) {
-    
-}
 @media(min-width:599px) {
     .texteQuestion {
-        padding: 2.5em;
-        background-size: 75%;
+        padding: 2em 1.5em;
+        margin: 2.5em
+    }
+}
+@media(min-width:899px) {
+    .texteQuestion {
+        padding: 3em 1.5em;
+        margin: 2.5em
     }
 }
 .testeQuestion__etat:hover {
@@ -304,18 +324,24 @@ body{
     display: flex;
     flex-direction: column;
     transform: translateY(6em);
+    background-color: #333;
+    color: #FFF;
+    border: 3px solid #333;
+    border-radius: 0 0 2em 2em;
+    margin: 0 auto;
 }
 @media(min-width: 599px) {
     .descriptionCache {
         transform: translateY(2.5em);
-        padding-right: 6em;
     }
 }
 .description__img {
     width: 100%;
+    margin: 0 auto;
 }
 .descriptionCache p{
     font-family: Inter, Helvetica, sans-serif;
+    padding: 1.2em;
 }
 /* Bouton */
 .ctnBouton__bouton {
@@ -325,6 +351,10 @@ body{
     color: #333;
     background-color: #8FE4FF;
     stroke: #8F1;
+}
+.ctnBouton__bouton:hover {
+    background-color: #3AD;
+    color: #FFF;
 }
 .ctnBouton__bouton:active {
     background-color: #333;
@@ -336,7 +366,6 @@ body{
     background-color: #AAA;
     stroke: none;
 }
-
 /* Rétroactions */
 .messageBonneReponse h3{
     padding: 2em;
@@ -356,7 +385,6 @@ body{
     padding: 2em;
     border: 3px solid #333;
 }
-
 /*
 *
 * Résultat
@@ -371,34 +399,17 @@ body{
     padding: 0 0 0 0.2em;
     font-size: 4vh;
 }
-.parentResultat {
-    position:relative;
-    margin-bottom: 15rem;
-}
-.rect {
-    position: absolute;
-    width: 1000px;
-    height: 220px;
-    left: -40px;
-    top: -15px;
+.contenuResultat {
+    background-color: rgba(186,255,99,0.5);
     border: 3px solid #333;
-    background-color: rgba(186,255,99,0.2);
+    padding: 1.2em;
 }
-@media(min-width:850px) {
-    
-    .rect {
-        left: -150px;
-        top: -15px;
-        border: 3px solid #333;
-        background-color: rgba(186,255,99,0.2);
-    }
-}
-
 
 .ctnBoutonRecommencer {
     margin-top: 70px;
 }
-.ctnBoutonRecommencer__bouton {
+.ctnBoutonRecommencer__bouton,
+.ctnBouton__bouton:visited {
     width: 12em;
     height: 45px;
     border: 3px solid #333;
