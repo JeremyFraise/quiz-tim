@@ -9,104 +9,190 @@
 @import url(normalize.css);
 @import url(utilitaires.css);
 @import url(base.css);
+@import url(animations.css);
 
-/* AJOUTER UNE TABLE DES MATIÈRES POUR POUVOIR NAVIGUER LA CSS*/
+/* AJOUTER UNE TABLE DES MATIÈRES POUR POUVOIR NAVIGUER LA CSS
+*
+*
+*
+*
+*/
 
-body{
+/* Typographie */
 
-    background-image: url(../images/background-image_1920w.jpg);
-    
+:root {
+    font-family: Inter, Helvetica, sans-serif;
+    color: #333;
+    line-height: 150%;
+}
+.titreQuestion, .resultat__h3 {
+    font-family: 'Indie Flower';
+    font-size: 25px;
+    text-decoration: underline 3px #333;
+}
+.texteQuestion p{
+    font-family: 'Margarine';
+
+}
+.retroaction h3 {
+    font-family: 'Klee One';
+}
+@media(min-width: 599px) {
+    .titreQuestion {
+        font-size: 30px;
+    }
+}
+@media(min-width: 799px) {
+    .titreQuestion {
+        font-size: 40px;
+    }
 }
 
+/* Contenu */
+body{
+    background-image: url(../images/background-image_1920w.jpg);
+}
 .main {
-    margin: 2em;
+    padding: 1em; 
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 /* ---- Grille de mise en page ---- */
 .depart, 
 .question, 
 .choix,
 .resultat{
-
     display: grid;
     gap: 1em 1em;
-    padding: 10px;
-
 }
 
-/* Départ */
-.depart{
+/*
+*
+* Départ
+*
+*/
 
+/* Mise en page de l'article .depart */
+.depart{
     grid-template-areas:
         "entete"
         "contenu"
         "gif"
         "bouton";
-
 }
-@media only screen and (min-width: 799px) {
+@media only screen and (min-width: 599px) {
     .depart {
         grid-template-columns: auto 20%;
         grid-template-areas:
             "entete gif gif"
             "contenu gif gif"
             "bouton . .";
-            
     }
 }
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 899px) {
     .depart {
         grid-template-columns: 2fr 1fr 2fr;
         grid-template-areas:
             "entete entete gif"
             "contenu contenu gif"
             "bouton . .";
-            
         max-width: 1000px;
         margin: 0 auto;
         padding: 0;
     }
-    
 }
 .titre {
     grid-area: entete;
-    max-width: 450px; 
+    margin-bottom: 6em;
+}
+@media(min-width: 599px) {
+    .titre {
+        max-width: 600px; 
+    }
 }
 .contenuDepart {
     grid-area: contenu;
 }
 .gif {
     grid-area: gif;
+    /* max-width: 480px; */
 }
 .boutonDepart {
     grid-area: bouton;
+    width: 12em;
+    height: 45px;
+    border: 3px solid #333;
+    border-radius: 12px;
+    background-color: #FFF; 
+    margin: 0 auto;
 }
 .boutonDepart:hover,
 .boutonDepart:focus {
     transition: 1s;
     background-color: #FFE071;
 }
+.boutonDepart:active {
+    background-color: #333;
+    color: #FFF;
+    transition: 0.1s;
+}
+@media (min-width: 599px) {
+    .boutonDepart {
+        margin: 0 0;
+    }
+}
 
-/* Questions */
+/*
+*
+* Questions
+*
+*/
+
+/* Bouton soumettre lorsque le JS est désactivé*/
+#btnSubmit {
+    width: 100%;
+    height: 45px;
+    padding: 0.5em;
+    color: #333;
+    background-color: #8FE4FF;
+    stroke: #8F1;
+}
+#btnSubmit:hover {
+    background-color: #3AD;
+    color: #FFF;
+}
+#btnSubmit:active {
+    background-color: #333;
+    color: #FFF;
+    transition: 0.1s;
+}
+#btnSubmit:disabled {
+    color: #777;
+    background-color: #AAA;
+    stroke: none;
+}
+
+/* Mise en page des articles avec la classe .question */
 .question{
-
+    border: none;
     grid-template-areas: 
     "question"
     "media"
     "choix"
     "message"
     "boutonQ";
-
 }
-@media only screen and (min-width: 499px) {
+@media only screen and (min-width: 599px) {
     .question {
-        /* grid-template-columns: auto 20%; */
+        grid-template-columns: 1fr 1fr;
         grid-template-areas:
             "question question"
-            "media  media"
+            "media media"
             "choix choix"
             "message message"
-            "boutonQ boutonQ";
-            
+            ". boutonQ";    
     }
 }
 @media only screen and (min-width: 899px) {
@@ -116,18 +202,51 @@ body{
             "media media media media"
             "choix choix choix choix"
             "message message message message"
-            "boutonQ boutonQ boutonQ boutonQ";
+            ". boutonQ boutonQ .";
         max-width: 1000px;
         margin: 0 auto;
         padding: 0;
     }
-    
 }
 .enonceQuestion {
     grid-area: question;
+    padding: 2em;
+    background-color: rgba(175, 217, 255, 0.5);
+}
+.imageQ1 {
+    grid-area: media;
+    position: relative;
 }
 .image {
-    grid-area: media;
+    width: 100%;
+}
+.figcaption {
+    position:absolute;
+    width: 100%;
+    bottom: 0;
+    left:0;
+    padding: 1em 0.5em;
+    background-color:rgba(3, 3, 3, 0.7);
+    color: #FFF;
+    visibility: hidden;
+}
+.imageQ1:hover .figcaption, 
+.imageQ1:active .figcaption {
+    visibility: visible;
+    animation-duration: 0.3s;
+    animation-name: translateUp;
+}
+@keyframes translateUp {
+    from {
+        transform: scale(0%);
+    }
+    to{
+        transform: scale(100%) ;
+    }
+
+}
+.figcaption a {
+    color: #DDD;
 }
 .video {
     grid-area: media;
@@ -138,6 +257,7 @@ body{
 }
 .ctnBouton {
     grid-area: boutonQ;
+    padding-top: 3em;
 }
 .messageBonneReponse {
     grid-area: message;
@@ -146,34 +266,24 @@ body{
     grid-area: message;
 }
 
-/* Choix question */
+/* Mise en page des choix de réponses */
 .choix{
     grid-template-areas:
         "a"
         "b"
         "c"
         "d";
-    
-
 }
 @media only screen and (min-width: 599px) {
     .choix {
         grid-template-columns: 1fr 1fr;
         grid-template-areas:
-            "a b"
-            "c d";
+            "a a"
+            "b b"
+            "c c"
+            "d d";
     }
 }
-@media only screen and (min-width: 899px) {
-    .choix {
-        grid-template-columns: 3% 47% 47% 3%;
-        grid-template-areas:
-            "a . . b"
-
-            "c . . d";
-    }
-}
-
 .a {
     grid-area: a;
 }
@@ -187,35 +297,37 @@ body{
     grid-area: d;
 }
 
-/* ---- CSS normal ---- */
-
-.cache {
-    display: none;
-}
-
+/* input à la classe .choixQuestion */
 .choixQuestion {
 
     appearance: none;
-    overflow: hidden;
 
 }
+/* État des label de question */
 .texteQuestion {
-    padding: 2em;
+    padding: 3em 2em 6em 2em;
+    margin: 60px 0;
     background-image: url(../images/svg/boutonReponse.svg); 
     background-repeat: no-repeat;
     background-size:100%;
+    transition: background-image 0.3s;
 }
-@media(min-width:799px) {
+@media(min-width:599px) {
     .texteQuestion {
-        background-size: 75%;
+        padding: 2em 1.5em;
+        margin: 2.5em
+    }
+}
+@media(min-width:899px) {
+    .texteQuestion {
+        padding: 3em 1.5em;
+        margin: 2.5em
     }
 }
 .testeQuestion__etat:hover {
-
     transition: 0.2s;
     background-image: url(../images/svg/boutonReponse__hover.svg);
     background-repeat: no-repeat;
-
 }
 .choixQuestion:checked + .testeQuestion__etat,
 .testeQuestion__etat:focus {
@@ -224,57 +336,192 @@ body{
     background-repeat: no-repeat;
 
 }
+
+/* État des choix après avoir valider la réponse */
 .bonneReponse {
     background-image: url(../images/svg/boutonReponse__bon.svg);
     background-repeat: no-repeat;
+
+    animation-duration: 1s;
+    animation-name: shakeY;
 }
 .mauvaiseReponse {
     background-image: url(../images/svg/boutonReponse__mauvais.svg);
     background-repeat: no-repeat;
+    animation-duration: 1s;
+    animation-name: shakeY;
 }
 
+/* Description des choix de réponses*/
 .descriptionCache {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    width: 100%;
+    align-items:  flex-start;
+    transform: translateY(6em);
+    background-color: #333;
+    color: #FFF;
+    border: 3px solid #333;
+    border-radius: 0 0 2em 2em;
+    margin: 0 auto;
+
+    
 }
-@media(min-width: 799px) {
+.animationDescription {
+    animation-duration: 0.3s;
+    animation-name: slideDown;
+}
+@keyframes slideDown {
+    from {
+        transform: scaleY(0%) translateY(0);
+    }
+    to{
+        transform: scaleY(100%) translateY(40px);
+    }
+
+}
+@media(min-width: 599px) {
     .descriptionCache {
-        width: 70%;
+        transform: translateY(2.5em);
     }
 }
-
-/* .descriptionCache img{
-    width: 70%;
-} */
-
-/* Bouton des question */
+.description__img {
+    width: 100%;
+    margin: 0 auto;
+}
+.descriptionCache p{
+    font-family: Inter, Helvetica, sans-serif;
+    padding: 1.2em;
+}
+/* Bouton */
 .ctnBouton__bouton {
-
+    width: 100%;
+    height: 45px;
     padding: 0.5em;
     color: #333;
     background-color: #8FE4FF;
     stroke: #8F1;
-
+}
+.ctnBouton__bouton:hover {
+    background-color: #3AD;
+    color: #FFF;
+}
+.ctnBouton__bouton:active {
+    background-color: #333;
+    color: #FFF;
+    transition: 0.1s;
 }
 .ctnBouton__bouton:disabled {
     color: #777;
     background-color: #AAA;
     stroke: none;
 }
-/* Footer */
-footer {
+/* Rétroactions */
+.messageBonneReponse h3{
+    padding: 2em;
+    border: 3px solid #333;
+    background-color: rgba(186,255,99,0.5);
+}
+.messageBonneReponse p {
+    padding: 2em;
+    border: 3px solid #333;
+}
+.messageMauvaiseReponse h3{
+    padding: 2em;
+    border: 3px solid #333;
+    background-color: rgba(255,117,117,0.5);
+}
+.messageMauvaiseReponse p {
+    padding: 2em;
+    border: 3px solid #333;
+}
+/*
+*
+* Résultat
+*
+*/
+.logoPageResultat{
+    max-width: 400px;
+    margin: 1em auto;
+}
 
+.resultat h2 {
+    margin: 0 10%;
+}
+
+#resultatSur3 {
+    padding: 0 0 0 0.2em;
+    font-size: 4vh;
+}
+.conteneurResultat {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: rgba(186,255,99,0.5);
+    border: 3px solid #333;
+    padding: 1.2em;
+}
+@media(min-width: 599px) {
+    .conteneurResultat {
+        flex-direction: row;
+        margin: 0 3%;
+    }
+    .ctnBoutonRecommencer {
+        margin-left:auto;
+    }
+}
+@media(min-width: 799px) {
+    .conteneurResultat {
+        margin: 0 10%;
+    }
+}
+.resultat__retroaction{
+    font-weight: 700;
+}
+.ctnBoutonRecommencer {
+    margin-top: 70px;
+}
+.ctnBoutonRecommencer__bouton,
+.ctnBouton__bouton:visited {
+    width: 12em;
+    height: 45px;
+    border: 3px solid #333;
+    border-radius: 12px;
+    background-color: #FFF;
+}
+.ctnBoutonRecommencer__bouton:hover,
+.ctnBoutonRecommencer__bouton:focus {
+    transition: 1s;
+    background-color: #FFE071;
+}
+.ctnBoutonRecommencer__bouton:active {
+    background-color: #333;
+    color: #FFF;
+    transition: 0.1s;
+}
+@media (min-width: 599px) {
+    .ctnBoutonRecommencer__bouton {
+        margin: 0 0;
+    }
+}
+
+/*
+*
+* Footer 
+*
+*/
+footer {
     margin: 10em 0 0 0;
     padding: 5em;
     background-color: #01232E;
-
 }
 footer p{
-
     text-align: center;
     padding: 1em 0 1em 0;
     color: #FFF;
+    margin-block-end: 0;
+}
 
+/* Utilitaire */
+.cache {
+    display: none;
 }
