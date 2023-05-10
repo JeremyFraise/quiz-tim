@@ -457,7 +457,7 @@
 }
 
 .slideUp {
-    animation-name: slideDown;
+    animation-name: slideUp;
     animation-duration: 1s;
     animation-fill-mode: both;
 }

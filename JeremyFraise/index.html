@@ -7,6 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Titre du quiz - Quiz TIM</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicom/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicom/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicom/favicon-16x16.png">
+    <link rel="manifest" href="assets/images/favicom/site.webmanifest">
+    <link rel="mask-icon" href="assets/images/favicom/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
     <script defer src="assets/js/app.js"></script>
 </head>
 
@@ -151,11 +158,11 @@
             
             <p class="contenu">Testez vos connaissances sur l’animation et ces principes fondamentaux.</p>
             <figure class="gif">
-                <img src="assets/images/mickey-mouse-steamboat-willie.gif">
+                <img src="assets/images/mickey-mouse-steamboat-willie.gif" alt>
             </figure>
         </article>
         
-        <form role="quiz" class="formulaire" action="index.html" method="">
+        <form role="form" class="formulaire" action="index.html" method="get">
             <fieldset class="question" id="question1">
                 <div class="enonceQuestion">
                     <h2 class="titreQuestion">Question 1/3</h2>
@@ -165,14 +172,14 @@
                     </p>
                 </div>
     
-                <div class="imageQ1">
+                <figure class="imageQ1">
                     <picture class="image">
                         <source srcset="assets/images/720/banniereQuestion1.jpg" media="(max-width:600px)">
                         <source srcset="assets/images/1668/banniereQuestion1.jpg" media="(max-width:1200px)">
                         <img src="assets/images/2000/banniereQuestion1.jpg" alt="The Illusion of Life écrit par Frank Thomas et Ollie Johnston">
                     </picture>
-                    <p class="figcaption">Photomontage réalisé avec ces images:  https://www.flickr.com/photos/rosenfeldmedia/7171793274 et https://www.pexels.com/fr-fr/photo/planche-de-bois-marron-139322/</p>
-                </div>
+                    <figcaption class="figcaption">Photomontage réalisé avec ces images:  <a href="https://www.flickr.com/photos/rosenfeldmedia/7171793274">Photo du livre</a> et <a href="https://www.pexels.com/fr-fr/photo/planche-de-bois-marron-139322/">Photo de la table</a></figcaption>
+                </figure>
                 <!--Question 1-->
                 <div class="choix">
                     <input id="Q1A" class="a choixQuestion" type="radio" name="Q1">
@@ -228,7 +235,6 @@
                     <p></p>
                 </div>
                 
-                
             </fieldset>
             <fieldset class="question" id="question2">
     
@@ -238,10 +244,10 @@
                 </div>
     
                     <!--Vidéo-->
-                    <video class="video" width="1200" height="" controls muted>
+                    <video class="video" controls muted>
                         <source src="assets/images/animation_q2.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
                     </video>
+                    <p class="screen-reader-only">Vidéo d'une balle qui tombe et qui se compresse à l'atttérissage</p>
                     
     
                     <!--Question 2-->
@@ -272,7 +278,7 @@
                             <div class="descriptionCache cache">
                                 <img class="description__img" src="assets/images/834/question2_image3.jpg" alt>
                                 <p>
-                                    C'est le principe dans lequel la position d'un objet d'une image à l'autre détermine la vitesse du mouvement et le poids de l'objet.
+                                    C'est le principe dans lequel la position de l'objet d'une image à l'autre détermine sa vitesse et son poids de l'objet. Une balle traversant une distance de un mètre en trois secondes est plus lourde qu'une qui la parcoure en une demie seconde.
                                 </p>
                             </div>
                         </label>
@@ -300,8 +306,6 @@
                     <p></p>
                 </div>
     
-                <!-- <button class="bouton" id="btnValider">Valider la réponse</button> -->
-    
             </fieldset>
             <fieldset class="question" id="question3">
     
@@ -311,10 +315,10 @@
                 </div>
     
 
-                <video class="video" width="1200" height="" controls muted>
+                <video class="video" controls muted>
                     <source src="assets/images/animation_q3.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
                 </video>
+                <p class="screen-reader-only">Vidéo d'une objet qui se prépare longuement à sauté puis s'élance.</p>
 
                 <!--Question 3-->
                 <div class="choix">
@@ -334,7 +338,7 @@
                         <div class="descriptionCache cache">
                             <img class="description__img" src="assets/images/834/question2_image3.jpg" alt>
                             <p>
-                                C'est le principe dans lequel la position d'un objet d'une image à l'autre détermine la vitesse du mouvement et le poids de l'objet.
+                                C'est le principe dans lequel la position de l'objet d'une image à l'autre détermine sa vitesse et son poids de l'objet. Une balle traversant une distance de un mètre en trois secondes est plus lourde qu'une qui la parcoure en une demie seconde.
                             </p>
                         </div>
                     </label>
@@ -372,6 +376,8 @@
     
             </fieldset>
 
+            <button type="submit" id="btnSubmit">Soumettre</button>
+
         </form>
 
         
@@ -381,17 +387,21 @@
 
             <h2>Résultats</h2>
 
-            <div class="contenuResultat">
-                <h3 class="resultat__h3"></h3>
-                <p>Tu as obtenu un score de <strong><span id="resultatSur3"></span>/3</strong></p>
-                <p class="resultat__retroaction"></p>
+            <div class="conteneurResultat">
+                <div class="contenuResultat">
+                    <h3 class="resultat__h3"></h3>
+                    <p>Tu as obtenu un score de <strong><span id="resultatSur3"></span>/3</strong></p>
+                    <p class="resultat__retroaction"></p>
+                </div>
+                
+                
             </div>
             
         </article>
 
     </main>
 
-    <footer role="footer">
+    <footer role="contentinfo">
 
         <p>TIM QUIZ</p>
         <p>Jeremy Fraser @ Cégep de Sainte-Foy, Design d’interface 2, 2023</p>

@@ -1,6 +1,7 @@
 /**
- * TIM - QUIZ
+ * @file Initialise le quiz
  * @author: Jeremy Fraser;
+ * @version 1
  **/
 
 /* Données du quiz - À ADAPTER SELON LES CONTENUS DU QUIZ */
@@ -39,7 +40,6 @@ const quiz = {
     intNbQuestions: 3,
     
     refDepart: document.querySelector('.depart'),
-    // refCtnBoutonSubmit: document.querySelector('.ctnBoutonSubmit'),
     refReponseChoisie: null,
     refLabelReponseChoisi: null,
     refResultat: document.querySelector('.resultat'),
@@ -51,6 +51,9 @@ const quiz = {
     arrDescriptionQuestion: document.querySelectorAll('.descriptionCache'),
     arrPositionBonnesReponses: new Array(3, 3, 0),
 
+    /**
+     * Initialise le jeu
+     */
     initierQuiz: function () {
 
         // Afficher l'intro  
@@ -73,10 +76,13 @@ const quiz = {
             refQuestion.classList.add('cache');
         })
 
-        // Cacher le bouton de soumission du formulaire
+        // Cache le bouton pour soumettre
+        const refBtnSubmit = document.getElementById('btnSubmit');
+        refBtnSubmit.classList.add('cache');
+
         // this.refCtnBoutonSubmit.classList.add('cache');
 
-        const refConteneur = document.querySelector(".contenuResultat"); 
+        const refConteneur = document.querySelector(".conteneurResultat"); 
 
         const refCtnBoutonRecommencer = document.createElement('div');
         refCtnBoutonRecommencer.classList.add('ctnBoutonRecommencer');
@@ -85,13 +91,22 @@ const quiz = {
         // Ajouter un écouteur d'événement au bouton
         refConteneur.append(refCtnBoutonRecommencer);
         refCtnBoutonRecommencer.querySelector('.ctnBoutonRecommencer__bouton').addEventListener('click', this.reinitialiserQuiz.bind(this));
+
     },
+
+    /**
+     * Cache la page de départ
+     */
     demarrerQuiz: function () {
         // Cacher l'intro       
         this.refDepart.classList.add('cache');
         // Afficher la première question
         this.afficherQuestion();
     },
+
+    /**
+     * Affiche la première question et crée un bouton pour valider la réponse
+     */
     afficherQuestion: function () {
         this.arrLabelChoixCourant = document.querySelectorAll("#question" + this.intNumeroQuestion + " .texteQuestion");
         // Afficher la question
@@ -107,7 +122,7 @@ const quiz = {
     },
 
     /**
-     * Affiche l'image associé à la réponse sélectionner
+     * Affiche l'image associé à la réponse sélectionnée
      * @param {number} intNoRep 
      */
     selectionImage: function (intNoRep) {
@@ -118,10 +133,13 @@ const quiz = {
         for(let index = 0; index < this.arrDescriptionQuestion.length; index++) {
             if(this.arrDescriptionQuestion[index].classList != 'cache') {
                 this.arrDescriptionQuestion[index].classList.add('cache');
+                this.arrDescriptionQuestion[index].classList.remove('animationDescription');
             }
         }
         // Enlève la classe visuallyhidden à la description de l'input selectionné
         this.arrDescriptionQuestion[intNoRep].classList.remove('cache');
+        this.arrDescriptionQuestion[intNoRep].classList.add('animationDescription');
+        this.arrLabelChoixTotal[intNoRep].scrollIntoView() // Solution trouvé sur https://stackoverflow.com/questions/5007530/how-do-i-scroll-to-an-element-using-javascript
         // Récupère l'input de la réponse sélectionnée
         this.refReponseChoisie = this.arrChoixQuestion[intNoRep];
         this.refLabelReponseChoisi = this.arrLabelChoixTotal[intNoRep];
@@ -131,7 +149,7 @@ const quiz = {
 
 
     /**
-     * 
+     * Valider la réponse choisie par l'utilisateur
      * @param {object} refBouton 
      */
     validerReponse: function (refBouton) {
@@ -152,6 +170,7 @@ const quiz = {
         if(refBoutonCourant.innerText == "Poursuivre") {
             refBoutonCourant.remove();
             this.arrQuestion[this.intNoQuestion].classList.add("cache");
+            this.arrQuestion[this.intNoQuestion].querySelector('.enonceQuestion').scrollIntoView();
             this.intNoQuestion++;
             this.intNumeroQuestion++;
             // Si l'utilisateur est encore aux trois questions
@@ -195,10 +214,11 @@ const quiz = {
                 document.querySelector('#question' + this.intNumeroQuestion + ' .messageMauvaiseReponse p').innerText = objJSON.explications[strQuestion];
             };
 
+            // Change le texte du bouton
             refBoutonCourant.innerText = "Poursuivre";
             let arrChoixCourant = document.querySelectorAll('#question' + this.intNumeroQuestion + ' .choix .choixQuestion');
             
-            
+            // Enlève les états sur les choix de réponses en plus de désactiver ces derniers 
             for(let index = 0; index < this.arrLabelChoixCourant.length; index++) {
                 this.arrLabelChoixCourant[index].classList.remove('testeQuestion__etat');
                 arrChoixCourant[index].checked = false;
@@ -209,8 +229,11 @@ const quiz = {
 
     },
 
+    /**
+     * Affiche la page résultat avec les rétroactions appropriés
+     */
     afficherResultats: function () {
-        // Contenu
+        // Révèle la page résultat
         this.refResultat.classList.remove("cache"); 
 
         const refH3Resultat = document.querySelector(".resultat__h3");
@@ -218,6 +241,7 @@ const quiz = {
         const refSpanResultat = document.getElementById("resultatSur3");
         refSpanResultat.innerText = this.intNbBonnesReponses;
 
+        // Ajoute les rétroactions selon le nombre de bonnes réponses
         switch(this.intNbBonnesReponses) {
 
             case 0:
@@ -243,8 +267,12 @@ const quiz = {
 
     },
 
+    /**
+     * Reintialise les valeurs du quiz et appelle la fonction afficherQuestion()
+     */
     reinitialiserQuiz: function() {
         
+        // Reintialise le contenu des rétroactions de bonne ou mauvaise réponse
         for(let index = 1; index <= 3; index++) {
             document.querySelector('#question' + index + ' .messageBonneReponse h3').innerText = "";
             document.querySelector('#question' + index + ' .messageBonneReponse p').innerText = "";
@@ -264,10 +292,8 @@ const quiz = {
 
         
 
-        console.log("T'es rendu après l'appel de fonction");
+        // Ajoute les classes d'états et enlève les classes bonne/mauvaise réponse au choix de réponses en plus de réactiver ces derniers.
         for(let intNoChoix = 0; intNoChoix < this.arrChoixQuestion.length; intNoChoix++) {
-
-            // Erreur rencontré: 
             this.arrLabelChoixTotal[intNoChoix].classList.add("testeQuestion__etat");
             this.arrLabelChoixTotal[intNoChoix].classList.remove("bonneReponse");
             this.arrLabelChoixTotal[intNoChoix].classList.remove("mauvaiseReponse");
@@ -275,16 +301,15 @@ const quiz = {
             this.arrChoixQuestion[intNoChoix].checked = false;
         };
 
-        console.log(this.arrLabelChoixTotal);
-
-        
         this.afficherQuestion();
-
 
     },
 
+    /**
+     * Empêche l'envoi du formulaire
+     * @param {object} e 
+     */
     empecherEnvoiFormulaire: function (e) {
-        console.log("Event prevented");
         e.preventDevault();
     },
     
